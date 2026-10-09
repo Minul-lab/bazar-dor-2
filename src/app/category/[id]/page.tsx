@@ -5,14 +5,17 @@ interface IProductDetail {
     id: string;
   }>;
 }
-const getAllProducts = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
-  if (!res.ok) throw new Error("Failed to fetch products");
-  const data = await res.json();
-  return data;
-};
+
 const Page = async ({ params }: IProductDetail) => {
   const { id } = await params;
+  const getAllProducts = async () => {
+    const res = await fetch(
+      "https://api.abcz.workers.dev/api/bazardor/products",
+    );
+    if (!res.ok) throw new Error("Failed to fetch products");
+    const data = await res.json();
+    return data;
+  };
 
   const AllProducts = await getAllProducts();
   const CategorizedProducts = AllProducts.filter(

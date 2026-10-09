@@ -34,9 +34,9 @@ const CategoryProducts = ({ products }: CategoryProductsProps) => {
           onChange={(e) => setSortBy(e.target.value)}
           className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 outline-none focus:border-green-500"
         >
-          <option value="default">Default</option>
-          <option value="low-high">Price: Low to High</option>
-          <option value="high-low">Price: High to Low</option>
+          <option value="default" className="text-sm">ডিফল্ট</option>
+          <option value="low-high " className="text-sm">দামঃ কম থেকে বেশি</option>
+          <option value="high-low" className="text-sm">দামঃ বেশি থেকে কম</option>
         </select>
       </div>
 
