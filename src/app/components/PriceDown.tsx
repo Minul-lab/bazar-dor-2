@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link"
 import { IProducts } from "../types/products";
 
 const PriceDown = async () => {
@@ -18,6 +18,7 @@ const PriceDown = async () => {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
         {downs.map((d) => (
+            <Link href={`/product/${d.id}`} key={d.id}>
           <div
             key={d.id}
             className="rounded-2xl border border-gray-200 bg-white/70 p-5 shadow-sm hover:border-[#05893E] hover:shadow-xl"
@@ -44,6 +45,7 @@ const PriceDown = async () => {
               </span>
             </div>
           </div>
+          </Link>
         ))}
       </div>
     </section>

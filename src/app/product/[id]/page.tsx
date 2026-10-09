@@ -74,7 +74,7 @@ const Page = async ({ params }: IProductDetail) => {
           </Link>
           <span className="text-gray-400">›</span>
           <Link
-            href={`/products?category=${product.category}`}
+            href={`/category/${product.category}`}
             className="transition hover:text-green-700"
           >
             {product.categoryNameBn}
@@ -181,7 +181,7 @@ const Page = async ({ params }: IProductDetail) => {
 
           <div className="overflow-hidden rounded-2xl border border-[#e0e8e0]">
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[680px] border-collapse text-left text-sm sm:text-base">
+              <table className="w-full min-w-170 border-collapse text-left text-sm sm:text-base">
                 <thead className="bg-[#fbfdfb] text-gray-500">
                   <tr>
                     <th className="px-4 py-4 font-medium sm:px-5">বাজার</th>
