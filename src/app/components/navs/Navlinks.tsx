@@ -12,12 +12,12 @@ const Navlinks = async () => {
     "https://api.abcz.workers.dev/api/bazardor/categories",
   );
   const data: Category[] = await res.json();
-  console.log(data.length)
+ 
 
   return (
-    <div className="flex gap-4 ml-4">
+    <div className="flex gap-4 ml-4 mb-2">
       {data.map((d, i) => (
-        <Link className="text-xs " href={`https://api.abcz.workers.dev/api/bazardor/categories/${d.id}`} key={i}>{`${d.icon}${d.nameBn}`} </Link>
+        <Link className="text-xs " href={`/category/${d.id}`} key={i}>{`${d.icon}${d.nameBn}`} </Link>
       ))}
     </div>
   );
