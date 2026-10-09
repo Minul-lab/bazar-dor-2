@@ -1,5 +1,4 @@
 import CategoryProducts from "@/app/components/category/categoryProducts";
-import { IProducts } from "../../types/products";
 
 
 const AllProducts = async() => {
