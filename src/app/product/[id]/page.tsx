@@ -41,7 +41,7 @@ const Page = async ({ params }: IProductDetail) => {
   const { id } = await params;
 
   const res = await fetch(
-    `https://api.api-store.workers.dev/api/bazardor/products/${id}`,
+    `https://openapi.programming-hero.com/api/bazardor/products/${id}`,
     {
       cache: "no-store",
     },

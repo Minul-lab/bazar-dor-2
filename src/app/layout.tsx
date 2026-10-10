@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
@@ -14,9 +15,13 @@ export const metadata: Metadata = {
   description: "Assignment-7 by Minul",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${banglaFont.className} h-full antialiased`}>
+    <html
+      lang="en"
+      data-theme="light"
+      className={`${banglaFont.className} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col bg-[#05893E]/10">
         <Navbar></Navbar>
         <Marquee></Marquee>
