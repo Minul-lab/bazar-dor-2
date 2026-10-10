@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "./components/navbar";
 import Marquee from "./components/navs/Marquee";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
 
 const banglaFont = Noto_Sans_Bengali({
   subsets: ["bengali"],
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Marquee></Marquee>
         {children}
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );

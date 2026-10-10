@@ -3,6 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import React, { useState } from "react";
 import Link from "next/link";
+import { toast , Bounce } from "react-toastify";
 
 const UserInfo = () => {
   const session = authClient.useSession();
@@ -11,6 +12,10 @@ const UserInfo = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSignOut = async () => {
+    toast.warning("সফলভাবে সাইন আউট করেছেন!", {
+      position: "top-center",
+      transition: Bounce,
+    });
     await authClient.signOut();
     setIsOpen(false);
   };

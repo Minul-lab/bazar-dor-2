@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link"
+import { Bounce, toast } from "react-toastify";
 
 const SignIn = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -22,11 +23,17 @@ const SignIn = () => {
     });
 
     if (data) {
-      console.log(data);
+      toast.success("সফলভাবে সাইন ইন করেছেন!", {
+        position: "top-center",
+        transition: Bounce,
+      });
     }
 
     if (error) {
-      console.error(error);
+      toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল রয়েছে", {
+        position: "top-center",
+        transition: Bounce,
+      });
     }
   };
 
