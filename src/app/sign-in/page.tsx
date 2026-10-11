@@ -22,12 +22,9 @@ const SignIn = () => {
       callbackURL: "/",
     });
 
-    if (data) {
-      toast.success("সফলভাবে সাইন ইন করেছেন!", {
-        position: "top-center",
-        transition: Bounce,
-      });
-    }
+   if (data) {
+     sessionStorage.setItem("showSignInToast", "true");
+   }
 
     if (error) {
       toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল রয়েছে", {
@@ -43,8 +40,15 @@ const SignIn = () => {
       callbackURL: "/",
     });
 
-    if (error) console.error(error);
-    if (data) console.log(data);
+   if (data) {
+     sessionStorage.setItem("showSignInToast", "true");
+   }
+    if (error) {
+      toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল রয়েছে", {
+        position: "top-center",
+        transition: Bounce,
+      });
+    }
   };
 
   const handleGithubSignIn = async () => {
@@ -53,8 +57,15 @@ const SignIn = () => {
       callbackURL: "/",
     });
 
-    if (error) console.error(error);
-    if (data) console.log(data);
+    if (data) {
+      sessionStorage.setItem("showSignInToast", "true");
+    }
+    if (error) {
+      toast.error("ইমেইল অথবা পাসওয়ার্ড ভুল রয়েছে", {
+        position: "top-center",
+        transition: Bounce,
+      });
+    }
   };
 
   return (

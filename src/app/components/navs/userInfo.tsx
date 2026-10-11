@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import React, { useState } from "react";
 import Link from "next/link";
 import { toast , Bounce } from "react-toastify";
+import { redirect } from "next/navigation";
 
 const UserInfo = () => {
   const session = authClient.useSession();
@@ -50,7 +51,7 @@ const UserInfo = () => {
                 className="fixed inset-0 z-40 cursor-default"
               />
 
-              <div className="absolute right-0 top-full z-50 mt-3 w-[335px] max-w-[calc(100vw-2rem)] rounded-[22px] border border-gray-200 bg-[#FAFCFA] p-6 shadow-xl">
+              <div className="absolute right-0 top-full z-50 mt-3 w-83.75 max-w-[calc(100vw-2rem)] rounded-[22px] border border-gray-200 bg-[#FAFCFA] p-6 shadow-xl">
                 {/* User Details */}
                 <div className="mb-4">
                   <p className="truncate text-lg font-semibold text-gray-500">
@@ -64,7 +65,8 @@ const UserInfo = () => {
                 <button
                   onClick={() => {
                     setIsOpen(false);
-                    window.location.href = "/profile";
+                    redirect("/profile")
+                    // window.location.href = "/profile";
                   }}
                   className="flex w-full items-center gap-3 py-2 text-left text-lg text-[#26332B] transition hover:text-[#05893E]"
                 >
@@ -90,7 +92,7 @@ const UserInfo = () => {
           <Link href="/sign-in">
             <button
               
-              className="text-gray-700 transition hover:text-[#05893E]"
+              className="text-gray-700 transition hover:bg-gray-500 py-1 px-3 rounded "
             >
               সাইন ইন
             </button>
