@@ -17,7 +17,7 @@ const AllProducts = async() => {
 
 
   return (
-    <div className="container mx-auto">
+    <div id="all-products" className="container mx-auto">
       <div className="text-3xl font-bold">সব পণ্য</div>
       <CategoryProducts products={AllProducts} />
     </div>

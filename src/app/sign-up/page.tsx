@@ -4,64 +4,60 @@ import { authClient } from "@/lib/auth-client";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import React from "react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast, Bounce } from "react-toastify";
+
+
+const toastOpts = { position: "top-center" as const, transition: Bounce };
 
 const SignUp = () => {
+  const router = useRouter();
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+    const { name, email, password } = Object.fromEntries(
+      formData.entries(),
+    ) as { name: string; email: string; password: string };
 
-    const user = Object.fromEntries(formData.entries()) as {
-      name: string;
-      email: string;
-      password: string;
-    };
-
-    const { data, error } = await authClient.signUp.email({
-      ...user,
-      callbackURL: "/",
-    });
-
-    if (data) {
-      redirect("/");
+    // validation toasts
+    if (!name.trim()) {
+      toast.error("নাম লিখুন", toastOpts);
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে", toastOpts);
+      return;
     }
 
-    if (error) {
-      console.error(error);
-    }
-  };
-
-  const handleGoogleSignUp = async () => {
-    const { data, error } = await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/",
+    const { error } = await authClient.signUp.email({
+      name: name.trim(),
+      email,
+      password,
     });
 
     if (error) {
-      console.error(error);
+      toast.error(error.message || "সাইন আপ করা যায়নি", toastOpts);
+      return;
     }
 
-    if (data) {
-      console.log(data);
-    }
+    toast.success("সফলভাবে সাইন আপ হয়েছে! এখন সাইন ইন করুন", toastOpts);
+    router.push("/sign-in");
   };
 
-  const handleGithubSignUp = async () => {
-    const { data, error } = await authClient.signIn.social({
-      provider: "github",
+  const handleSocial = async (provider: "google" | "github") => {
+    const { error } = await authClient.signIn.social({
+      provider,
       callbackURL: "/",
     });
-
     if (error) {
-      console.error(error);
-    }
-
-    if (data) {
-      console.log(data);
+      toast.error("সোশ্যাল লগইন করা যায়নি, আবার চেষ্টা করুন", toastOpts);
     }
   };
+
+  // ...JSX below
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-[#f1f5f1] px-4 py-10 text-[#171717]">
@@ -142,7 +138,7 @@ const SignUp = () => {
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <button
             type="button"
-            onClick={handleGoogleSignUp}
+            onClick={() => handleSocial("google")}
             className="flex min-0.75 items-center justify-center gap-3 rounded-xl border border-[#28312b] px-3 text-center text-base font-medium transition hover:bg-gray-100"
           >
             <FcGoogle size={20} />
@@ -155,7 +151,7 @@ const SignUp = () => {
 
           <button
             type="button"
-            onClick={handleGithubSignUp}
+            onClick={() => handleSocial("github")}
             className="flex min-h-10 items-center justify-center gap-3 rounded-xl border border-[#28312b] px-3 text-center text-base font-medium transition hover:bg-gray-100"
           >
             <FaGithub size={20} />

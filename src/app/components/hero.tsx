@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ScrollButton from "./ctaBtn";
 
 const Hero = () => {
   const banglaDate = new Date().toLocaleDateString("bn-BD", {
@@ -21,9 +22,7 @@ const Hero = () => {
           বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
         </p>
 
-        <button className="cursor-pointer rounded-lg bg-[#05893E] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-90 active:scale-95 sm:text-base">
-          সব পণ্য দেখুন
-        </button>
+        <ScrollButton />
       </div>
 
       <div className="w-full max-w-55 shrink-0 sm:max-w-70 md:max-w-80 lg:max-w-100">

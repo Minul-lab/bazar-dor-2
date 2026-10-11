@@ -19,8 +19,10 @@ export async function proxy(request: NextRequest) {
 
     // If the user is not signed in, protect these pages
     if (!user && (pathname === '/profile' || pathname.startsWith('/product/'))) {
-        return NextResponse.redirect(new URL('/sign-in', request.url))
-    }
+    const loginUrl = new URL('/sign-in', request.url)
+    loginUrl.searchParams.set('reason', 'login-required')
+    return NextResponse.redirect(loginUrl)
+}
 
     return NextResponse.next()
 }

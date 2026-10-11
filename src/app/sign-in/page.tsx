@@ -5,8 +5,23 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link"
 import { Bounce, toast } from "react-toastify";
+import { useEffect } from "react";
 
 const SignIn = () => {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("reason") === "login-required") {
+      toast.warning("এই পাতাটি দেখতে আগে সাইন ইন করুন", {
+        toastId: "login-required", // stops a duplicate toast in dev mode
+        position: "top-center",
+        transition: Bounce,
+      });
+
+      // clean the URL so a refresh doesn't show the toast again
+      window.history.replaceState(null, "", "/sign-in");
+    }
+  }, []);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

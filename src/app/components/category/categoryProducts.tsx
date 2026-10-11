@@ -38,7 +38,7 @@ const CategoryProducts = ({ products }: CategoryProductsProps) => {
           <option value="default" className="text-sm">
             ডিফল্ট
           </option>
-          <option value="low-high " className="text-sm">
+          <option value="low-high" className="text-sm">
             দামঃ কম থেকে বেশি
           </option>
           <option value="high-low" className="text-sm">
