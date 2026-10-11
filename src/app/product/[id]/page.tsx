@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 interface IProductDetail {
   params: Promise<{
     id: string;
@@ -46,12 +47,20 @@ const Page = async ({ params }: IProductDetail) => {
       cache: "no-store",
     },
   );
+  if (res.status === 404) {
+    notFound();
+  }
 
   if (!res.ok) {
     throw new Error("Failed to fetch product details");
   }
+  
 
   const product: IProduct = await res.json();
+  
+if (!product || !product.id) {
+  notFound();
+}
 
   const minPrice = Math.min(...product.markets.map((m) => m.min));
   const maxPrice = Math.max(...product.markets.map((m) => m.max));

@@ -1,4 +1,5 @@
 import CategoryProducts from "@/app/components/category/categoryProducts";
+import { notFound } from "next/navigation";
 import { IProducts } from "../../types/products";
 interface IProductDetail {
   params: Promise<{
@@ -19,10 +20,11 @@ const Page = async ({ params }: IProductDetail) => {
 
   const AllProducts = await getAllProducts();
   const CategorizedProducts = AllProducts.filter(
-    (product: IProducts) => product.category === id,
+    (product: IProducts) => product.category === id
   );
-  console.log("ID from params:", id);
-  console.log("First product:", CategorizedProducts[0]);
+ if (CategorizedProducts.length === 0) {
+   notFound();
+ }
   const ctgIcon = CategorizedProducts[0]?.categoryIcon;
   const ctg = CategorizedProducts[0]?.categoryNameBn;
 
