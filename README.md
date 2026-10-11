@@ -5,7 +5,7 @@
 **BazarDor** is a daily market price tracker for Bangladesh. It shows today's prices of everyday essentials such as rice, pulses, oil, vegetables, fish, meat, eggs and spices. Users can see which prices rose or fell, browse by category, sort by price, and open a product to compare prices across different bazaars and divisions.
 
 🔗 **Live Site:** https://bazar-dor-2-avum.vercel.app/
-📦 **GitHub Repository:** `<add-your-repo-link-here>`
+📦 **GitHub Repository:** `https://github.com/Minul-lab/bazar-dor-2`
 
 ---
 
@@ -131,6 +131,6 @@ src/
 
 ## 👤 Author
 
-**Minul** – Assignment 07, B14
+**MohaiMinul** – Assignment 07, B14
 
 > সকল দাম সম্ভাব্য; বাজার অবস্থার ওপর নির্ভর করে পরিবর্তিত হয়।
